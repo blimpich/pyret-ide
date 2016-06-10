@@ -1,36 +1,60 @@
 import React from "react";
 import Menu from "react-menus";
 
-//.button {}
-
-//.buttonRun {background-color: #317BCF}
-
-function onClick(events, props, index){}
+function onClick(events, props, index) {}
+//function onChildClick(event, props, index) {}
 
 const toolbarStyle = {color: "white", backgroundColor: "gray", width: "100%", height: 40, position: "fixed"};
 
+//var itemProps = {};
+//expander: "Sub Menu"
+
 const items = [
   {
-    label: "Download This File",
+    label: "More",
     onClick: function(itemProps, index, event) {
-      console.log('well,hello')
+      console.log("well, hello");
     }
+  },
+  {
+    label: "Download this file"
+  },
+  {
+    label: "Documentation"
+  },
+  {
+    label: "TODO: Font"
+  },
+  {
+    label: "Report an Error"
+  },
+  {
+    label: "Discuss Pyret"
+  },
+  {
+    label: "Log Out"
   }
 ];
 
-//<Menu items={items} onClick={onClick}/>
+class DropDownMenu extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {expanded: false};
+  }
+  render() {
+    return()
+  }
+}
 
 export default class Toolbar extends React.Component {
   render() {
     return (
       <div style={toolbarStyle}> 
         <img style={{height: "100%"}} src={this.props.logo}/>
-        <button style={{height: "100%"}}>Connect to Google Drive</button>
-        <button style={{height: "100%"}}>More</button>
-        <Menu items={items} onClick={onClick}/>
-        <button style={{height: "100%"}}>Run</button>
-        <button style={{height: "100%"}}>Stop</button>
-        this is the toolbar!
+        <button style={{height: "100%", backgroundColor: "gray", color: "white"}}>Connect to Google Drive</button>
+        {this.state.expanded ? <Menu items={items} onClick={onClick}/> : null}
+        <button style={{height: "100%", float: "right", backgroundColor: "#317BCF", color: "white"}}>Run</button>
+        <button style={{height: "100%", float: "right"}}>Stop</button>
       </div>
     );
   } 

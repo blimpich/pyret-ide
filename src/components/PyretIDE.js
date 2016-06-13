@@ -7,7 +7,7 @@ export default class PyretIDE extends React.Component {
     return (
       <div>
         <Toolbar logo="https://code.pyret.org/img/pyret-logo.png"/>
-        The Pyret IDE!
+	The Pyret IDE!
       </div>
     );
   }

@@ -1,0 +1,19 @@
+import React from "react";
+import Radium from "radium";
+
+
+//TODO
+//test
+@Radium
+class StopButton extends React.Component {
+  constructor(props){
+    super(props);
+    var normalStopStyle = {width: 150, float: "right", color: "gray"};
+    var runningStopStyle = {width: 150, float: "right", color: "gray", backgroundColor: "#FF0000"};
+  }
+  render() {
+    return(
+      {this.state.running ? <button style={[styles.base, runningStopStyle]}>Stop</button> : <button style={[styles.bases, normalStopStyle]}>Stop</button>}
+    );
+  }
+}

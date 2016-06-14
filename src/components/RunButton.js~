@@ -1,0 +1,21 @@
+import React from "react";
+import Radium from "radium";
+
+
+//TODO
+//if clicked this.setState should make running equal to true
+//test and (probably) debug gif img within img
+@Radium
+class RunButton extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {running: false};
+    var normalRunStyle = {width: 150, float: "right", backgroundColor: "#317BCF", color: "white"};
+    var runningRunStyle = {width: 150, float: "right", color: "gray"};
+  }
+  render() {
+    return(
+      {this.state.running ? <button style={[styles.base, runningRunStyle]}><img src={this.props.gif}/>Running...</button> : <button style={[styles.base, normalRunStyle]}>Run</button>} 
+    );
+  }
+}

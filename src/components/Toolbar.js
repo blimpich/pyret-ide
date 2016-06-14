@@ -21,3 +21,4 @@ export default class Toolbar extends React.Component {
 }
 
 Toolbar.propTypes = {logo: React.PropTypes.string};
+

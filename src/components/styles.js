@@ -1,5 +1,3 @@
-import React from "react";
-
 export var styles = {
   toolbar: {
     color: "white",
@@ -19,14 +17,12 @@ export var styles = {
     more: {
       width: 75.88,
       backgroundColor: "gray",
-      color: "white",
       marginLeft: "3px"
     },
     run: {
       notRunning: {
         float: "right",
-        backgroundColor: "#317BCF",
-        color: "white"
+        backgroundColor: "#317BCF"
       },
       running: {
         width: 150, 
@@ -48,8 +44,7 @@ export var styles = {
     googleDrive: {
       connect2: {
         width: 194,
-        backgroundColor: "gray",
-        color: "white"
+        backgroundColor: "gray"
       },
       connecting: {
         width: 194,
@@ -57,9 +52,17 @@ export var styles = {
         color: "#33331a"
       },
     },
-    save:{},
-    share:{},
-    
+    userInput:{
+      width: 210,
+      backgroundColor: "white",
+      color:  "gray"
+    },
+    save:{
+      backgroundColor: "gray"
+    },
+    share:{
+      backgroundColor: "gray"
+    }
   }  
 };
 

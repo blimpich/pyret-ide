@@ -31,6 +31,8 @@ const items = [
 ];
 
 //TODO
+//so much
+//research google APIs
 class Connect2GDrive extends React.Component {
   constructor(props){
     super(props);
@@ -42,6 +44,25 @@ class Connect2GDrive extends React.Component {
   }
 }
 
+//TODO
+//if clicked this.setState should make running equal to true
+//test and (probably) debug gif img within img
+class RunButton extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {running: true};
+    var normalRunStyle = {height: "100%", border: "none", fontSize:"15px", fontFamily: "sans-serif", width: 150, float: "right", backgroundColor: "#317BCF", color: "white"};
+    var runningRunStyle = {height: "100%", border: "none", fontSize:"15px", fontFamily: "sans-serif", width: 150, float: "right", color: "gray"};
+  }
+  render() {
+    return(
+      {this.state.running ? <button style={runningRunStyle}><img src={this.props.gif}/>Running...</button> : <button style={normalRunStyle}>Run</button>} 
+    );
+  }
+}
+
+//TODO
+//test
 class StopButton extends React.Component {
   constructor(props){
     super(props);
@@ -55,22 +76,9 @@ class StopButton extends React.Component {
   }
 }
 
-
 //TODO
-class RunButton extends React.Component {
-  constructor(props){
-    super(props);
-    var normalRunStyle = {height: "100%", border: "none", fontSize:"15px", fontFamily: "sans-serif", width: 150, float: "right", backgroundColor: "#317BCF", color: "white"};
-    var runningRunStyle = {height: "100%", border: "none", fontSize:"15px", fontFamily: "sans-serif", width: 150, float: "right", color: "gray"};
-  }
-  render() {
-    return(
-      {this.state.running ? <button style={runningRunStyle}><img src={this.props.gif}/>Running...</button> : <button style={normalRunStyle}>Run</button> } 
-    );
-  }
-}
-
-//TODO
+//make work
+//make it so that it can collapse back down
 class DropDownMenu extends React.Component {
   constructor(props) {
     super(props);

@@ -1,7 +1,7 @@
 import React from "react";
 import Menu from "react-menus";
 import Radium from "radium";
-import styles from "styles";
+import {styles} from "./styles";
 
 //function onClick(events, props, index) {};
 //function onChildClick(event, props, index) {}
@@ -31,8 +31,8 @@ const items = [
 //TODO
 //make work
 //make it so that it can collapse back down
-@Radium
-export default class More extends React.Component {
+
+class More extends React.Component {
   constructor(props) {
     super(props);
     this.state = {expanded: false};
@@ -40,9 +40,11 @@ export default class More extends React.Component {
   render() {
     return(
       <div>
-          <button style={[styles.buttons.base, styles.buttons.DropDownMenuButton]} onClick={()=>{this.setState({expanded: true});}}>More</button>
+          <button style={[styles.buttons.base, styles.buttons.more]} onClick={()=>{this.setState({expanded: true});}}>More</button>
           {this.state.expanded ? <Menu items={items} onClick={onClick}/> : null}
       </div>
     );
   }
 }
+
+export default Radium(More);

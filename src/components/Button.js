@@ -26,22 +26,53 @@ const styles = {
       background: '#66b8ff'
     }
   },
-  homeLeft: {
-    color: '#fff', background: '#808080', fontSize: '18', width: '100', height:'100', marginRight: '3em',
+  home: {
+    color: '#fff', background: '#808080', fontSize: '18', width: '100', height:'100',
     ':hover': {
       background: '#0074d9'
     }
   },
-  homeRight: {
-    color: '#fff', background: '#808080', fontSize: '18', width: '100', height:'100', marginLeft: '3em',
-    ':hover': {
-      background: '#0074d9'
+  stop: {
+    running: {
+      float: "right", 
+      color: "gray"
+    },
+    notRunning: {
+      float: "right", 
+      color: "gray",
+      backgroundColor: "#FF0000"
     }
+  },
+  run: {
+    notRunning: {
+      float: "right",
+      backgroundColor: "#317BCF"
+    },
+    running: {
+      width: 150, 
+      float: "right", 
+      color: "gray"
+    }
+  },
+  more: {
+    width: 75.88,
+    backgroundColor: "gray",
+    marginLeft: "3px"
+  },
+  googleDrive: {
+    connect2: {
+      width: 194,
+      backgroundColor: "gray"
+    },
+    connecting: {
+      width: 194,
+      backgroundColor: "gray",
+      color: "#33331a"
+    },
   },
   primary: {
     background: '#0074D9'
   },
-
   warning: {
     background: '#FF4136'
   }

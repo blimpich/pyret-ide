@@ -1,11 +1,8 @@
 import React from "react";
 import Radium from "radium";
-import styles from "./styles";
+import {styles} from "./styles";
 
-//TODO
-//test
-@Radium
-export default class Stop extends React.Component {
+class Stop extends React.Component {
   render() {
     if (this.state.running) {
       return (
@@ -16,10 +13,12 @@ export default class Stop extends React.Component {
       );
     } else {
       return (
-        <button style={[styles.button.base, styles.buttons.stop.notRunning]}>
+        <button style={[styles.buttons.base, styles.buttons.stop.notRunning]}>
             Stop
         </button>
       );
     }
   }
 }
+
+export default Radium(Stop);

@@ -20,10 +20,12 @@ export var styles = {
       width: 150,
       border: "none",
       fontSize:"15px", 
-      fontFamily: "sans-serif"
+      fontFamily: "sans-serif",
+      color: "white"
     },
     more: {
       width: 75.88,
+      float: "left",
       backgroundColor: "gray",
       marginLeft: "3px"
     },
@@ -39,11 +41,11 @@ export var styles = {
       }
     },
     stop:{
-      running: {
+      notRunning: {
         float: "right", 
         color: "gray"
       },
-      notRunning: {
+      running: {
         float: "right", 
         color: "gray",
         backgroundColor: "#FF0000"
@@ -51,10 +53,12 @@ export var styles = {
     },
     googleDrive: {
       connect2: {
+        float: "left",
         width: 194,
         backgroundColor: "gray"
       },
       connecting: {
+        float: "left",
         width: 194,
         backgroundColor: "gray",
         color: "#33331a"

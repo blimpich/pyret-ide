@@ -1,13 +1,13 @@
 import React from "react";
 import Radium from "radium";
-import styles from "./styles";
+import {styles} from "./styles";
 
 
 //TODO
 //if clicked this.setState should make running equal to true
 //test and (probably) debug gif img within img
-@Radium
-export default class Run extends React.Component {
+
+class Run extends React.Component {
   constructor(props){
     super(props);
     this.state = {running: false};
@@ -22,7 +22,7 @@ export default class Run extends React.Component {
       );
     } else {
       return (
-        <button style={[styles.button.base, styles.buttons.run.notRunning]}>
+        <button style={[styles.buttons.base, styles.buttons.run.notRunning]}>
             Run
         </button>
       );
@@ -31,3 +31,5 @@ export default class Run extends React.Component {
 }
 
 Run.propTypes = {gif: React.PropTypes.string};
+
+export default Radium(Run);

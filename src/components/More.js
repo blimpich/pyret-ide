@@ -3,6 +3,9 @@ import Menu from "react-menus";
 import Radium from "radium";
 import styles from "styles";
 
+//function onClick(events, props, index) {};
+//function onChildClick(event, props, index) {}
+
 const items = [
   {
     label: "Download this file"
@@ -11,7 +14,7 @@ const items = [
     label: "Documentation"
   },
   {
-    label: "TODO: Font"
+    label: "Font"
   },
   {
     label: "Report an Error"
@@ -29,7 +32,7 @@ const items = [
 //make work
 //make it so that it can collapse back down
 @Radium
-export default class DropDownMenuButton extends React.Component {
+export default class More extends React.Component {
   constructor(props) {
     super(props);
     this.state = {expanded: false};

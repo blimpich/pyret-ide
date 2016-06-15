@@ -6,10 +6,7 @@ import Radium from "radium";
 //so much
 //research google APIs
 @Radium
-export default class Connect2GDriveButton extends React.Component {
-  constructor(props){
-    super(props);
-  }
+export default class GoogleDrive extends React.Component {
   render() {
     return(
       <button style={[]}>Connect to Google Drive</button>

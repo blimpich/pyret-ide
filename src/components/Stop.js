@@ -1,17 +1,25 @@
 import React from "react";
 import Radium from "radium";
-
+import styles from "./styles";
 
 //TODO
 //test
 @Radium
-class StopButton extends React.Component {
-  constructor(props){
-    super(props);
-  }
+export default class Stop extends React.Component {
   render() {
-    return(
-      {this.state.running ? <button style={[styles.base, runningStopStyle]}>Stop</button> : <button style={[styles.bases, normalStopStyle]}>Stop</button>}
-    );
+    if (this.state.running) {
+      return (
+        <button style={[styles.buttons.base, styles.buttons.stop.running]}>
+            <img src={this.props.gif}/>
+            Stop
+        </button>
+      );
+    } else {
+      return (
+        <button style={[styles.button.base, styles.buttons.stop.notRunning]}>
+            Stop
+        </button>
+      );
+    }
   }
 }

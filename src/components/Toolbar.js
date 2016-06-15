@@ -1,24 +1,25 @@
 import React from "react";
 import Radium from "radium";
-import StopButton from "stopButton" //??? naming convention?
-import styles from "style";
+import Stop from "./Stop";
+import GoogleDrive from "./GoogleDrive";
+import More from "./More";
+import Run from "./Run";
+import styles from "./styles";
 
-function onClick(events, props, index) {}
-//function onChildClick(event, props, index) {}
-
+@Radium
 export default class Toolbar extends React.Component {
   render() {
     return (
       <div style={styles.toolbar}>
-          <a href="https://code.pyret.org/"><img style={{height: "80%", paddingLeft: 15, paddingRight: 15, paddingTop: 5, display: "block", float: "left"}} src={this.props.logo}/></a>
-          <DropDownMenu/>
-          <RunButton/>
-          <StopButton/>
-          <Connect2GDrive/>
+          <a href="https://code.pyret.org/"><img style={styles.logo} src={this.props.logo}/></a>
+          <More/>
+          <Run/>
+          <Stop/>
+          <GoogleDrive/>
       </div>
     );
   } 
 }
 
 Toolbar.propTypes = {logo: React.PropTypes.string};
-
+ //would this go here or in Run.js?

@@ -1,4 +1,12 @@
 export var styles = {
+  logo:{
+    height: "80%",
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingTop: 5, 
+    display: "block",
+    float: "left"
+  },
   toolbar: {
     color: "white",
     backgroundColor: "#C0C0C0",

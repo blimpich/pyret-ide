@@ -10,14 +10,14 @@ class Toolbar extends React.Component {
   render() {
     return (
       <div style={styles.toolbar}>
-          <a href="https://code.pyret.org/"><img style={styles.logo} src={this.props.logo}/></a>
+      <a href="https://code.pyret.org/"><img style={styles.logo} src={this.props.logo}/></a>
           <GoogleDrive/>
           <More/>
           <Stop/>
           <Run/>
       </div>
     );
-  } 
+  }
 }
 
 Toolbar.propTypes = {logo: React.PropTypes.string};

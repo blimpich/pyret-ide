@@ -11,19 +11,30 @@ export class GoogleDrive extends React.Component {
     super(props);
     this.state = {connecting: false};
     this.state = {connected: false};
+    this.state = {saved: false};
   }
   render() {
-    if (this.state.connected) {
+    if (this.state.connected && this.state.saved) {
       return (
         <span>
           <Input kind="program" defaultValue="Program Name"></Input>
-          <Button kind="save">Save</Button>
+          <Button kind="utility" onClick={()=>{this.setState({saved: true});}}>Save</Button>
+          <Button kind="utility">Share</Button>
+
         </span>
       );
     }
-    if (this.state.connecting) {
+    else if (this.state.connected) {
       return (
-        <Button kind="googleDrive" style={{color: "#33331a"}} onClick={()=>{this.setState({connected: !this.state.connected});}}>Connecting</Button>
+        <span>
+          <Input kind="program" defaultValue="Program Name"></Input>
+          <Button kind="utility" onClick={()=>{this.setState({saved: true});}}>Save</Button>
+        </span>
+      );
+    }
+    else if (this.state.connecting) {
+      return (
+        <Button kind="googleDrive" style={{color: "#33331a"}} onClick={()=>{this.setState({connected: true});}}>Connecting</Button>
       );
     }
     else {

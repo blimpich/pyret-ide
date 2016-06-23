@@ -23,9 +23,7 @@ export var styles = {
       height: "100%"
     },
     program: {
-      width: 194,
       float: "left",
-      height: "100%"
     }
   },
   buttons: {
@@ -37,13 +35,7 @@ export var styles = {
       fontFamily: "sans-serif",
       color: "white"
     },
-    save: {
-      width: 75.88,
-      float: "left",
-      backgroundColor: "gray",
-      marginLeft: "3px"
-    },
-    more: {
+    utility: {
       width: 75.88,
       float: "left",
       backgroundColor: "gray",
@@ -66,8 +58,5 @@ export var styles = {
       backgroundColor: "white",
       color:  "gray"
     },
-    share:{
-      backgroundColor: "gray"
-    }
   }
 };

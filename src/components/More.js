@@ -36,7 +36,7 @@ export class More extends React.Component {
   render() {
     return(
       <span>
-          <Button kind="more" onClick={()=>{this.setState({expanded: !this.state.expanded});}}>More</Button>
+          <Button kind="utility" onClick={()=>{this.setState({expanded: !this.state.expanded});}}>More</Button>
           {this.state.expanded ? <Menu items={items} onClick={onClick}/> : null}
       </span>
     );

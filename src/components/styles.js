@@ -17,6 +17,17 @@ export var styles = {
     width: "100%",
     height: 40,
   },
+  forms: {
+    base: {
+      width: 194,
+      height: "100%"
+    },
+    program: {
+      width: 194,
+      float: "left",
+      height: "100%"
+    }
+  },
   buttons: {
     base: {
       height: "100%",
@@ -25,6 +36,12 @@ export var styles = {
       fontSize:"15px",
       fontFamily: "sans-serif",
       color: "white"
+    },
+    save: {
+      width: 75.88,
+      float: "left",
+      backgroundColor: "gray",
+      marginLeft: "3px"
     },
     more: {
       width: 75.88,
@@ -48,9 +65,6 @@ export var styles = {
       width: 210,
       backgroundColor: "white",
       color:  "gray"
-    },
-    save:{
-      backgroundColor: "gray"
     },
     share:{
       backgroundColor: "gray"

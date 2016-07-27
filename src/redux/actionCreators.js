@@ -191,22 +191,57 @@ export function saveGoogleDrive(file) {
   };
 }
 
-export function openGoogleDrive(file) {
+export function openGoogleDrive() {
   return dispatch => {
     dispatch({type: actType.START_OPEN_DRIVE});
-    var promise = new Promise((resolve, reject) => {
-      window.setTimeout(() => resolve(file), 1000);
-      if (!file) {
-        reject(new Error("File not opened"));
+    var scope = 'https://www.googleapis.com/auth/drive.readonly';
+    var pickerApiLoaded = false;
+    var oauthToken;
+    function onApiLoad() {
+      gapi.load('auth', {'callback': onAuthApiLoad});
+      gapi.load('picker', {'callback': onPickerApiLoad});
+    }
+    onApiLoad();
+    function onAuthApiLoad() {
+      window.gapi.auth.authorize(
+        {
+          'client_id': process.env.CLIENT_ID,
+          'scope': scope,
+          'immediate': false
+        },
+        handleAuthResult);
+    }
+
+    function onPickerApiLoad() {
+      pickerApiLoaded = true;
+      createPicker();
+    }
+    function handleAuthResult(authResult) {
+      if (authResult && !authResult.error) {
+        oauthToken = authResult.access_token;
+        createPicker();
       }
-    });
-    promise
-      .then(file => {
-        dispatch({type: actType.FINISH_OPEN_DRIVE, payload: file});
-      })
-      .catch(reason => {
-        dispatch({type: actType.FAIL_OPEN_DRIVE, payload: reason});
-      });
+    }
+    function createPicker() {
+      if (pickerApiLoaded && oauthToken) {
+        var picker = new google.picker.PickerBuilder().
+                                addView(google.picker.ViewId.DOCS).
+                                setOAuthToken(oauthToken).
+                                setDeveloperKey(process.env.DEVELOPER_KEY).
+                                setCallback(pickerCallback).
+                                build();
+        picker.setVisible(true);
+      }
+    }
+    function pickerCallback(data) {
+      var url = 'nothing';
+      if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+        var doc = data[google.picker.Response.DOCUMENTS][0];
+        dispatch({type: actType.FINISH_OPEN_DRIVE, payload: doc});
+      }
+      var message = 'You picked: ' + url;
+      document.getElementById('result').innerHTML = message;
+    }
   };
 }
 

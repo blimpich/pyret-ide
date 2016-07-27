@@ -91,6 +91,12 @@ module.exports = {
       'process.env.FIREBASE_DATABASE_URL': JSON.stringify(
         process.env.FIREBASE_DATABASE_URL
       ),
+      'process.env.DEVELOPER_KEY': JSON.stringify(
+        process.env.DEVELOPER_KEY
+      ),
+      'process.env.CLIENT_ID': JSON.stringify(
+        process.env.CLIENT_ID
+      ),
     }),
   ]),
   babel: {

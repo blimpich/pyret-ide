@@ -1,7 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {changeREPLCode, run} from '../redux/actionCreators';
+import {changeREPLCode,
+        run,
+        getPrevREPLCode,
+        getNextREPLCode,
+}
+from '../redux/actionCreators';
 import * as selectors from '../redux/selectors';
 
 const styles = {
@@ -36,11 +41,20 @@ export class REPLInput extends React.Component {
         <textarea
           style={styles.textarea}
           value={this.props.code}
-          onChange={event => this.props.changeREPLCode(event.target.value)}
-          onKeyPress={event => {
-            (event.shiftKey && event.key === "Enter") ?
-            this.props.changeREPLCode(event.target.value) :
-            event.key === "Enter" && this.props.onRun(this.props.code);
+          onChange={event => {
+            this.props.changeREPLCode(event.target.value);
+          }}
+          onKeyDown={event => {
+            if(!(event.shiftKey) && event.key === "Enter") {
+              event.preventDefault();
+              this.props.onRun(this.props.code);
+            }
+            if (event.key === "ArrowUp") {
+              this.props.prevREPLCode();
+            }
+            if (event.key === "ArrowDown") {
+              this.props.nextREPLCode();
+            }
           }}
         />
       </div>
@@ -53,6 +67,8 @@ REPLInput.propTypes = {
   isLoadingRuntime: React.PropTypes.bool,
   changeREPLCode: React.PropTypes.func,
   onRun: React.PropTypes.func,
+  prevREPLCode: React.PropTypes.func,
+  nextREPLCode: React.PropTypes.func,
 };
 
 export default connect(
@@ -64,5 +80,7 @@ export default connect(
     {
       changeREPLCode: changeREPLCode,
       onRun: run,
+      prevREPLCode: getPrevREPLCode,
+      nextREPLCode: getNextREPLCode,
     }, dispatch)
 )(REPLInput);

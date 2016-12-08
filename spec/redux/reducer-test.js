@@ -81,6 +81,8 @@ describe("The reducer", () => {
     const changeREPLCode = {type: actType.CHANGE_REPL_CODE, payload: 'code'};
     const receiveREPLResult = {type: actType.RECEIVE_REPL_RESULT, payload: 'result'};
     const clearState = {type: actType.CLEAR_STATE};
+    const getPrevREPLCode = {type: actType.GET_PREV_REPL_CODE};
+    const getNextREPLCode = {type: actType.GET_NEXT_REPL_CODE};
 
     it("returns a state object ", () => {
       expect(state.get('REPL')).toEqual(jasmine.any(Object));
@@ -102,14 +104,29 @@ describe("The reducer", () => {
          () => {
            var nextState = pyretReducer(state, changeREPLCode);
            nextState = pyretReducer(nextState, receiveREPLResult).get('REPL');
-           expect(nextState.get('history').first().result).toEqual('result');
-           expect(nextState.get('history').first().code).toEqual('code');
+           expect(nextState.getIn(['history', 0, 'result'])).toEqual('result');
+           expect(nextState.getIn(['history', 0, 'code'])).toEqual('code');
          });
 
       it("for action CLEAR_STATE", () => {
         var nextState = pyretReducer(state, changeREPLCode);
         nextState = pyretReducer(state, clearState);
         expect(nextState).toEqual(state);
+      });
+
+      it("for action GET_PREV_REPL_CODE", () => {
+        var nextState = pyretReducer(state, changeREPLCode);
+        nextState = pyretReducer(nextState, receiveREPLResult);
+        nextState = pyretReducer(nextState, getPrevREPLCode).get('REPL');
+        expect(nextState.get('codePosition')).toEqual(nextState.get('history').size - 1);
+      });
+
+      it("for action GET_NEXT_REPL_CODE", () => {
+        var nextState = pyretReducer(state, changeREPLCode);
+        nextState = pyretReducer(nextState, receiveREPLResult);
+        nextState = pyretReducer(nextState, getPrevREPLCode);
+        nextState = pyretReducer(nextState, getNextREPLCode).get('REPL');
+        expect(nextState.get('codePosition')).toEqual(nextState.get('history').size);
       });
     });
   });
@@ -359,3 +376,4 @@ describe("The reducer", () => {
     });
   });
 });
+

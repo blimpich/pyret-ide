@@ -44,6 +44,18 @@ export function receiveREPLResult(result) {
   };
 }
 
+export function getPrevREPLCode() {
+  return {
+    type: actType.GET_PREV_REPL_CODE,
+  };
+}
+
+export function getNextREPLCode() {
+  return {
+    type: actType.GET_NEXT_REPL_CODE,
+  };
+}
+
 export function changeSource(source) {
   localStorage.setItem(constants.LOCAL_STORAGE_SOURCE_KEY, source);
   return {
@@ -94,7 +106,7 @@ export function run(src) {
                 }
                 dispatch({
                   type: actType.FINISH_EXECUTE,
-                  payload: result
+                  payload: result,
                 });
                 dispatch({
                   type: actType.STORE_EDITOR_RESULT,

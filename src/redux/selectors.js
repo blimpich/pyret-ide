@@ -109,11 +109,11 @@ export function getHighlightsFor(state, uri) {
   }
 }
 
+export function getCodePosition(state) {
+  return state.getIn(['REPL', 'codePosition']);
+}
+
 export const REPL = state => state.get('REPL');
-export const getCode = createSelector(
-  REPL,
-  REPL => REPL.get('code')
-);
 
 export const hasHistory = createSelector(
   REPL,
@@ -123,6 +123,20 @@ export const hasHistory = createSelector(
 export const getHistory = createSelector(
   REPL,
   REPL => REPL.get('history')
+);
+
+export const getCode = createSelector(
+  [
+    REPL,
+    getCodePosition,
+    getHistory
+  ],
+  (REPL, codePosition, history) => {
+    if (codePosition === history.size) {
+      return REPL.get('code');
+    }
+    return REPL.get('codeInHistory');
+  }
 );
 
 export function isMoreMenuExpanded(state) {

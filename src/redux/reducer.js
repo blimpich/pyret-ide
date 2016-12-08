@@ -37,7 +37,9 @@ const initialState = Immutable.Map({
     fileId: null,
   }),
   REPL: Immutable.Map({
-    code: '',
+    codePosition: 0, //if there is history, history[0] will be the oldest entry
+    codeInHistory: '', //stores code in history w/o changing original history entry
+    code: '', //code in repl input box
     history: Immutable.List(),
   }),
   moreMenu: Immutable.Map({
@@ -64,17 +66,56 @@ function loadApi(state = initialState.get('loadApi'), action) {
   }
 }
 
+function setNextCodePosition(state, dir) {
+  let nextCodePosition = state.get('codePosition');
+  const history = state.get('history');
+  nextCodePosition += dir;
+  while (nextCodePosition > 0 &&
+         nextCodePosition < history.size &&
+         history.getIn([nextCodePosition, 'code']) === '') {
+    nextCodePosition += dir;
+  }
+  const nextCode = history.getIn([nextCodePosition, 'code']);
+  if (nextCodePosition < 0 ||
+      nextCodePosition > history.size ||
+      history.getIn([nextCodePosition, 'code']) === '') {
+    return state;
+  }
+  return state.merge({
+    codePosition: nextCodePosition,
+    codeInHistory: nextCode,
+  });
+}
+
 function REPL(state = initialState.get('REPL'), action) {
+  const history = state.get('history');
+  const codePosition = state.get('codePosition');
   switch (action.type) {
+    case actType.GET_PREV_REPL_CODE:
+      return setNextCodePosition(state, -1);
+    case actType.GET_NEXT_REPL_CODE:
+      return setNextCodePosition(state, 1);
     case actType.CHANGE_REPL_CODE:
+      if (codePosition < history.size) {
+        return state.set('codeInHistory', action.payload);
+      }
       return state.set('code', action.payload);
     case actType.RECEIVE_REPL_RESULT:
-      return state.set('history', state.get('history').push({
-        code: state.get('code'),
-        result: action.payload
-      }));
+      return state
+        .update('history', history => {
+          if (codePosition === history.size) {
+            return history.push(Immutable.Map({
+              code: state.get('code'),
+              result: action.payload
+            }));
+          }
+          return history.push(Immutable.Map({
+            code: state.get('codeInHistory'),
+            result: action.payload
+          }));
+        });
     case actType.FINISH_EXECUTE:
-      return state.set('code', '');
+      return state.merge({code: '', codePosition: history.size});
     case actType.CLEAR_STATE:
       return initialState.get('REPL');
     default:
